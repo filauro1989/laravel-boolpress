@@ -27,8 +27,7 @@
                         <tr>
                             <td>{{ $post->title }}</td>
                             <td>{{ $post->author }}</td>
-                            <td>{{ $post->content }} €</td>
-                            {{-- <td><a class="btn btn-primary" href="{{ route('posts.show', $post) }}">View</a></td> --}}
+                            <td>{{ $post->content }}</td>
                         </tr>
                     @endforeach
                     </tbody>
