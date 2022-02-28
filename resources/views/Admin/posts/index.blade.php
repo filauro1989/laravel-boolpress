@@ -6,11 +6,11 @@
         <div class="row">
             <h1 class="h1">Admin - All Posts</h1>
         </div>
-        {{-- <div class="row">
+        <div class="row">
             <div class="col">
-                <a href="{{ route('keyboards.create') }}" class="btn btn-primary">Add new keyboard</a>
+                <a href="{{ route('admin.posts.create') }}" class="btn btn-primary m-3">Add new post</a>
             </div>
-        </div> --}}
+        </div>
         <div class="row">
             <div class="col">
                 <table class="table table-primary">
