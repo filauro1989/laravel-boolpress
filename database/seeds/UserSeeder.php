@@ -19,7 +19,10 @@ class UserSeeder extends Seeder
             $newUser = new User();
             $newUser->name = $faker->name();
             $newUser->email = $faker->email();
+
+            // Creo una stringa per la password
             $string = '215_maggio';
+            // cripto la password
             $newUser->password = Hash::make($string);
             $newUser->save();
         }

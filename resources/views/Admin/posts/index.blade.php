@@ -29,6 +29,15 @@
                             <td>{{ $post->author }}</td>
                             <td>{{ $post->content }}</td>
                             <td><a class="btn btn-primary" href="{{ route('admin.posts.show', $post)}}">View Post</a></td>
+                            <td>
+                                <form action="{{ route('admin.posts.destroy', $post->slug) }}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input class="btn btn-danger" type="submit" value="Delete">
+                                </form>
+                                {{-- nel caso volessi fare prima un check con js --}}
+                                {{-- <button class="delete">Delete</button> --}}
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>
