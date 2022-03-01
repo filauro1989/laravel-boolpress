@@ -96,9 +96,15 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        // $validateData = $request->validate($this->ruleValidation);
+
+        $data = $request->all();
+        //validazione
+        $post->update($data);
+
+        return redirect()->route('admin.posts.show', ['post' => $post]);
     }
 
     /**

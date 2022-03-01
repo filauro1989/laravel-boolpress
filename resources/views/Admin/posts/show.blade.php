@@ -15,5 +15,10 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col d-flex justify-content-center mt-3">
+                <a class="btn btn-dark" href="{{ route('admin.posts.index') }}">Back</a>
+            </div>
+        </div>
     </div>
 @endsection
