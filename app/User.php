@@ -37,7 +37,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    // Relazione ONE TO ONE CON UserInfo
     public function userInfo() {
         return $this->hasOne('App\Model\UserInfo');
     }
+
+    // Relazione ONE TO MANY CON Post
+    public function posts() {
+        return $this->hasMany('App\Model\Post');
+    }
+
 }
