@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    {{ __('You are logged in!') }} - {{ Auth::user()->name }} - {{ Auth::user()->userInfo()->first()->address }}
 
                     <a class="btn btn-primary" href="{{ route('admin.posts.index') }}">View Posts</a>
 
