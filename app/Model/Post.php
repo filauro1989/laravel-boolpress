@@ -14,4 +14,10 @@ class Post extends Model
         'created_at',
         'updated',
     ];
+
+    // FUNZIONE CHE PERMETTE DI USARE LO SLUG COME CHIAVE NELL URL
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }
