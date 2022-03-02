@@ -12,7 +12,9 @@ class Post extends Model
         'content',
         'slug',
         'created_at',
-        'updated',
+        'updated_at',
+        'category_id',
+        'user_id',
     ];
 
     // APPARTIENE A USER RELAZIONE ONE TO MANY
@@ -20,9 +22,14 @@ class Post extends Model
         return $this->belongsTo('App\User');
     }
 
+    public function categories() {
+        return $this->belongsTo('App\Model\Category');
+    }
+
     // FUNZIONE CHE PERMETTE DI USARE LO SLUG COME CHIAVE NELL URL
     public function getRouteKeyName()
     {
         return 'slug';
     }
+
 }
