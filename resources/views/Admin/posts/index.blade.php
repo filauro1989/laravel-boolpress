@@ -25,6 +25,7 @@
                         <tr class="table-primary">
                             <th>Title</th>
                             <th>Author</th>
+                            <th>Category</th>
                             <th>Content</th>
                             <th>Actions</th>
                         </tr>
@@ -34,6 +35,7 @@
                         <tr>
                             <td>{{ $post->title }}</td>
                             <td>{{ $post->author }}</td>
+                            <td>{{ $post->category()->first()->name }}</td>
                             <td>{{ $post->content }}</td>
                             <td><a class="btn btn-primary" href="{{ route('admin.posts.show', $post)}}">View Post</a>
                                 @if (Auth::user()->id === $post->user_id)

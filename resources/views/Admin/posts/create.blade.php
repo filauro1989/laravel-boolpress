@@ -29,7 +29,7 @@
                     <div class="mb-3">
                         <label for="author" class="form-label">Author</label>
                         <textarea class="form-control" id="author" rows="1"
-                            name="author">{{ old('author') }}</textarea>
+                            name="author">{{ Auth::user()->name }}</textarea>
                         @error('author')
                             <div class="alert alert-danger">
                                 {{ $message }}
