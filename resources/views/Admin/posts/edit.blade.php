@@ -19,6 +19,14 @@
                         @csrf
                         @method('PATCH')
 
+                        <select class="form-select" name="category_id">
+                            <option value="">Select a category</option>
+                            @foreach ($categories as $category)
+                                <option @if (old('category_id') == $category->id) selected @endif value="{{ $category->id }}">
+                                    {{ $category->name }}</option>
+                            @endforeach
+                        </select>
+
                         <div class="mb-3">
                             <label for="title" class="form-label">title</label>
                             <input type="text" class="form-control" id="title" name="title" value="{{ $post->title }}">

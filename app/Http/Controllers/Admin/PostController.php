@@ -61,20 +61,12 @@ class PostController extends Controller
         $slug = Str::slug($data['title'], '-');
         $postExist = Post::where('slug', $slug)->first();
 
-        $counter = 0;
-        while ($postExist) {
-            $slug = $slug . '-' . $counter;
-            $postExist = Post::where('slug', $slug)->first();
-            $counter++;
-        }
+        $post = new Post();
+        $post->fill($data);
+        $post->slug = $post->createSlug($data['title']);
+        $post->save();
 
-        $newPost = new Post();
-
-        $newPost->fill($data);
-        $newPost->slug = $slug;
-        $newPost->save();
-
-        return redirect()->route('admin.posts.show', $newPost->slug);
+        return redirect()->route('admin.posts.show', $post->slug);
     }
 
     /**
@@ -97,7 +89,12 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('admin.posts.edit', ['post' => $post]);
+        if (Auth::user()->id != $post->user_id) {
+            abort('403');
+        }
+        $categories = Category::all();
+
+        return view('admin.posts.edit', ['post' => $post, 'categories' => $categories]);
     }
 
     /**
