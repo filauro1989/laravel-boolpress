@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
     <div class="container">
@@ -7,6 +7,14 @@
                 <form action="{{ route('admin.posts.store') }}" method="POST">
                     @csrf
                     @method('POST')
+
+                    <select class="form-select" name="category_id">
+                        <option value="">Select a category</option>
+                        @foreach ($categories as $category)
+                            <option @if (old('category_id') == $category->id) selected @endif value="{{ $category->id }}">
+                                {{ $category->name }}</option>
+                        @endforeach
+                    </select>
 
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>

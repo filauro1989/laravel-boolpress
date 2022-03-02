@@ -24,6 +24,12 @@ class PostController extends Controller
         return view('admin.posts.index', compact('posts'));
     }
 
+    public function userIndex() {
+        $posts = Post::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->paginate(20);
+
+        return view('admin.posts.index', ['posts' => $posts]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -45,11 +51,11 @@ class PostController extends Controller
     {   
         $data = $request->all();
         $data['user_id'] = Auth::user()->id;
-        
+
         $validateData = $request->validate([
             'title'=> 'required|max:255',
             'content' => 'required',
-            'author' => 'required',
+            'category_id' => 'exists:App\Model\Category,id'
         ]);
 
         $slug = Str::slug($data['title'], '-');

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('documentTitle')
     {{ $post->title }}
@@ -11,7 +11,8 @@
                 <div class="card w-50 d-flex align-items-center">
                     <div class="h1">{{ $post->title }}</div>
                     <p class="text-center">{{ $post->content }}</p>
-                    <h2>{{ $post->author }}</h2>
+                    <h2>Author: {{ $post->user()->first()->name }}</h2>
+                    <h2>Category: {{ $post->category()->first()->name }}</h2>
                 </div>
             </div>
         </div>
