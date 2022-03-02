@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Support\Str;
 
 use App\Model\Post;
+use App\Model\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -29,7 +31,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+        $categories = Category::all();
+        return view('admin.posts.create', ['categories' => $categories]);
     }
 
     /**
@@ -39,14 +42,16 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
+        $data = $request->all();
+        $data['user_id'] = Auth::user()->id;
+        
         $validateData = $request->validate([
             'title'=> 'required|max:255',
             'content' => 'required',
             'author' => 'required',
         ]);
 
-        $data = $request->all();
         $slug = Str::slug($data['title'], '-');
         $postExist = Post::where('slug', $slug)->first();
 
