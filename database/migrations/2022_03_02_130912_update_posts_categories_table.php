@@ -22,7 +22,7 @@ class UpdatePostsCategoriesTable extends Migration
                     // DELLA COLONNA ID
                     ->references('id')
                     // DELLA TABELLA CATEGORIES
-                    ->on('categories')->onDelete('set null');
+                    ->on('categories')->onDelete('cascade');
             });
         });
     }
