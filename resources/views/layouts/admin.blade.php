@@ -64,6 +64,13 @@
                                         All Categories
                                     </a>
                                 </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('admin.categories.create') }}">
+                                        <i class="bi bi-files"></i>
+                                        Add Category
+                                    </a>
+                                </li>
                                 
                             </ul>
                         </div>
