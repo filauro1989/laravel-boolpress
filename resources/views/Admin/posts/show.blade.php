@@ -13,6 +13,11 @@
                     <p class="text-center">{{ $post->content }}</p>
                     <h2>Author: {{ $post->user()->first()->name }}</h2>
                     <h2>Category: {{ $post->category()->first()->name }}</h2>
+                    <h3>Tags: 
+                        @foreach ($post->tags()->get() as $tag)
+                        {{ $tag->name }}
+                        @endforeach 
+                    </h3>
                 </div>
             </div>
         </div>
