@@ -22,6 +22,12 @@ class Post extends Model
     public function user() {
         return $this->belongsTo('App\User');
     }
+    
+    // APPARTIENE A TAG RELAZIONE MANY TO MANY
+    public function tags() {
+
+        return $this->belongsToMany('App\Model\Tag')->withTimestamps();
+    }
 
     public function category() {
         return $this->belongsTo('App\Model\Category');
