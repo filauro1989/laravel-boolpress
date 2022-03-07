@@ -14,6 +14,7 @@ class Post extends Model
         'slug',
         'created_at',
         'updated_at',
+        'image',
         'category_id',
         'user_id',
     ];
