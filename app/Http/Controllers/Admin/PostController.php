@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use App\Model\Post;
 use App\Model\Category;
 use App\Model\Tag;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -59,6 +60,7 @@ class PostController extends Controller
             'content' => 'required',
             'category_id' => 'exists:App\Model\Category,id',
             'tags.*' => 'nullable|exists:App\Model\Tag,id',
+            'image' => 'nullable|image',
         ]);
 
         $slug = Str::slug($data['title'], '-');
@@ -71,6 +73,11 @@ class PostController extends Controller
 
         if (!empty($data['tags'])) {
             $post->tags()->attach($data['tags']);
+        }
+
+        if (!empty($data['img_path'])) {
+            $img_path = Storage::put('uploads', $data['image']);
+            $data['image'] = $img_path;
         }
 
         return redirect()->route('admin.posts.show', $post->slug);
