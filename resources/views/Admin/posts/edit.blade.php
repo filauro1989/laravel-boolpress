@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col d-flex justify-content-center">
                 <div class="card w-50 d-flex align-items-center py-3">
-                    <form action="{{ route('admin.posts.update', $post->slug) }}" method="post">
+                    <form action="{{ route('admin.posts.update', $post->slug) }}" method="post" enctype="multipart/form-data">
                         {{-- essenziali per il funzionamento del form --}}
                         @csrf
                         @method('PATCH')
@@ -23,16 +23,26 @@
                         <select class="form-select" name="category_id">
                             <option value="">Select a category</option>
                             @foreach ($categories as $category)
-                                <option @if (old('category_id') == $category->id) selected 
+                                <option @if (old('category_id', $post->category_id) == $category->id) selected 
                                     @endif value="{{ $category->id }}">
                                     {{ $category->name }}</option>
                             @endforeach
+                            @error('category_id')
+                            <div class="alert alert-danger mt-3">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </select>
-                        @error('category_id')
-                        <div class="alert alert-danger mt-3">
-                            {{ $message }}
+
+                        @if (!empty($post->image))
+                            <div class="mb-3">
+                                <img class="img-fluid" src="{{ asset('storage/' . $post->image) }}" alt="{{$post->title}}">
+                            </div>
+                        @endif
+                        <div class="mb-3">
+                            <label for="image" class="form-label">Upload Image</label>
+                            <input class="form-control" type="file" id="image" name="image">
                         </div>
-                        @enderror
 
                         <fieldset class="my-3">
                             <legend>Tags</legend>
