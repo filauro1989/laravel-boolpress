@@ -66,6 +66,11 @@ class PostController extends Controller
         $slug = Str::slug($data['title'], '-');
         $postExist = Post::where('slug', $slug)->first();
 
+        if (!empty($data['image'])) {
+            $img_path = Storage::put('uploads', $data['image']);
+            $data['image'] = $img_path;
+        }
+
         $post = new Post();
         $post->fill($data);
         $post->slug = $post->createSlug($data['title']);
@@ -73,11 +78,6 @@ class PostController extends Controller
 
         if (!empty($data['tags'])) {
             $post->tags()->attach($data['tags']);
-        }
-
-        if (!empty($data['img_path'])) {
-            $img_path = Storage::put('uploads', $data['image']);
-            $data['image'] = $img_path;
         }
 
         return redirect()->route('admin.posts.show', $post->slug);
@@ -166,6 +166,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        $post->tags()->detach();
+
         $post->delete();
 
         return redirect()

@@ -17,8 +17,13 @@
                     </select>
 
                     <div class="mb-3">
-                        <label for="image" class="form-label">Default file input example</label>
-                        <input class="form-control" type="file" id="image">
+                        <label for="image" class="form-label">Upload Image</label>
+                        <input class="form-control" type="file" id="image" name="image">
+                        @error('image')
+                        <div class="alert alert-danger mt-3">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
 
                     <fieldset class="my-3">
