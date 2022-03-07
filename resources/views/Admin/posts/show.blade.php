@@ -18,6 +18,7 @@
                         {{ $tag->name }}
                         @endforeach 
                     </h3>
+                    <img class="img-fluid" src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}">
                 </div>
             </div>
         </div>
