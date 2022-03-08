@@ -64,11 +64,11 @@
                 </table>
             </div>
         </div>
-        {{-- <div class="row">
+        <div class="row">
             <div class="col">
                 {{ $posts->links() }}
             </div>
-        </div> --}}
+        </div>
     </div>
 
 @endsection

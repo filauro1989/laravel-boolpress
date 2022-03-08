@@ -31,7 +31,6 @@ Route::middleware('auth')
         Route::get('/myposts', 'PostController@userIndex')->name('posts.userIndex');
         Route::resource('categories', 'CategoryController');
         Route::resource('posts', 'PostController');
-        Route::resource('posts', 'ApiPostController');
     });
 
 Route::get("{any?}", function () {
