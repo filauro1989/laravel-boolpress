@@ -51,15 +51,25 @@ export default {
     data() {
         return {
             posts: null,
+            next_page_url: null,
+            prev_page_url: null,
         };
     },
     created() {
         this.getPosts("http://127.0.0.1:8000/api/posts");
     },
     methods: {
+        changePage(vs) {
+            let url = this[vs];
+            if (url) {
+                this.getPosts(url);
+            }
+        },
         getPosts(url) {
             Axios.get(url).then((result) => {
                 this.posts = result.data.results.data;
+                this.next_page_url = result.data.results.next_page_url;
+                this.prev_page_url = result.data.results.prev_page_url;
             });
         },
     },

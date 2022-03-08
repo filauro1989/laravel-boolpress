@@ -15,7 +15,7 @@ class ApiPostController extends Controller
      */
     public function index()
     {
-        $posts = Post::paginate(6);
+        $posts = Post::paginate(8);
         return response()->json([
             'response' => true,
             'results' => $posts,
