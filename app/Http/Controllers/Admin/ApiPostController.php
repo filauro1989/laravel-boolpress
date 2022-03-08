@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use App\Model\Product;
+use App\Model\Post;
 
 class ApiPostController extends Controller
 {
@@ -16,9 +16,9 @@ class ApiPostController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $posts = Post::all();
 
-        return view('admin.products.index', ['products' => $products]);
+        return view('admin.posts.index', ['posts' => $posts]);
     }
 
     /**
