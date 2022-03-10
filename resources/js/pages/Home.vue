@@ -34,7 +34,7 @@ export default {
     },
     methods: {
         changePage(vs) {
-            let url = this[vs];
+            let url = this.cards[vs];
             if (url) {
                 this.getPosts(url);
             }

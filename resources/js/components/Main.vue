@@ -21,8 +21,11 @@
                     </div>
                 </div>
             </div>
-            <div class="row mt-3 bg-light">
-                <ul class="list-inline bg-light">
+            <div
+                class="row mt-3 bg-light"
+                v-if="cards.prev_page_url || cards.next_page_url"
+            >
+                <ul class="list-inline bg-light p-2">
                     <li class="list-inline-item">
                         <button
                             v-if="cards.prev_page_url"
