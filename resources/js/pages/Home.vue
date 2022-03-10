@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="container-fluid">
+        <div class="container-fluid w-75 mx-auto">
             <div class="row">
                 <div class="col">
                     <h1>Home</h1>
@@ -17,6 +17,9 @@ import Main from "../components/Main.vue";
 
 export default {
     name: "Home",
+    components: {
+        Main,
+    },
     data() {
         return {
             cards: {
@@ -27,7 +30,7 @@ export default {
         };
     },
     created() {
-        this.getPosts("http://127.0.0.1:8000/v1/api/posts/random");
+        this.getPosts("http://127.0.0.1:8000/api/v1/posts/random");
     },
     methods: {
         changePage(vs) {
@@ -47,4 +50,4 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss"></style>

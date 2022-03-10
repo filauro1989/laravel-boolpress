@@ -18,9 +18,7 @@ class ApiPostController extends Controller
         $posts = Post::paginate(8);
         return response()->json([
             'response' => true,
-            'results' => [
-                'data' => $posts
-            ]
+            'results' => $posts,
         ]);
     }
 
@@ -29,7 +27,9 @@ class ApiPostController extends Controller
         $posts = Post::inRandomOrder()->limit(4)->get();
         return response()->json([
             'response' => true,
-            'results' => $posts,
+            'results' => [
+                'data' => $posts
+            ]
         ]);
     }
 
