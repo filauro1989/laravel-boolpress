@@ -18,6 +18,17 @@ class ApiPostController extends Controller
         $posts = Post::paginate(8);
         return response()->json([
             'response' => true,
+            'results' => [
+                'data' => $posts
+            ]
+        ]);
+    }
+
+    public function inRandomOrder()
+    {
+        $posts = Post::inRandomOrder()->limit(4)->get();
+        return response()->json([
+            'response' => true,
             'results' => $posts,
         ]);
     }
