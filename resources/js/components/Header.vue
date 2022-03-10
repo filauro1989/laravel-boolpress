@@ -22,9 +22,11 @@
                         v-for="item in menuItems"
                         :key="item.id"
                     >
-                        <a class="nav-link" :href="item.link">{{
-                            item.label
-                        }}</a>
+                        <router-link
+                            class="nav-link"
+                            :to="{ name: item.routeName }"
+                            >{{ item.label }}</router-link
+                        >
                     </li>
                 </ul>
             </div>
@@ -40,30 +42,21 @@ export default {
             logo: require("../../img/bag-shopping-solid.svg"),
             menuItems: [
                 {
-                    label: "Item 1",
-                    link: "#",
-                    id: 1,
+                    label: "Home",
+                    routeName: "home",
                 },
                 {
-                    label: "Item 2",
-                    link: "#",
-                    id: 2,
+                    label: "Posts",
+                    routeName: "posts",
                 },
                 {
-                    label: "Item 3",
-                    link: "#",
-                    id: 3,
+                    label: "Chi Siamo",
+                    routeName: "about",
                 },
-                {
-                    label: "Item 4",
-                    link: "#",
-                    id: 4,
-                },
-                {
-                    label: "Item 5",
-                    link: "#",
-                    id: 5,
-                },
+                // {
+                //     label: "Home",
+                //     routeName: "home",
+                // },
             ],
         };
     },
