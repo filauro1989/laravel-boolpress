@@ -37,31 +37,31 @@ class ApiPostController extends Controller
 
     public function search(Request $request)
     {
-        $data = $request->all();
-        if (
-            array_key_exists('orderbycolumn', $data) &&
-            array_key_exists('orderbysort', $data)
-        ) {
-            $posts->orderBy($data['orderbycolumn'], $data['orderbysort']);
-        }
+        // $data = $request->all();
+        // if (
+        //     array_key_exists('orderbycolumn', $data) &&
+        //     array_key_exists('orderbysort', $data)
+        // ) {
+        //     $posts->orderBy($data['orderbycolumn'], $data['orderbysort']);
+        // }
 
-        if (array_key_exists('tags', $data)) {
-            foreach ($data['tags'] as $tag) {
-                $posts->whereHas('tags', function (Builder $query) use ($tag) {
-                    $query->where('name', '=', $tag);
-                });
-            }
-        }
+        // if (array_key_exists('tags', $data)) {
+        //     foreach ($data['tags'] as $tag) {
+        //         $posts->whereHas('tags', function (Builder $query) use ($tag) {
+        //             $query->where('name', '=', $tag);
+        //         });
+        //     }
+        // }
 
-        $posts = $posts->with(['tags', 'category'])->get();
+        // $posts = $posts->with(['tags', 'category'])->get();
 
-        return response()->json([
-            'response' => true,
-            'count' =>  $posts->count(),
-            'results' =>  [
-                'data' => $posts
-            ],
-        ]);
+        // return response()->json([
+        //     'response' => true,
+        //     'count' =>  $posts->count(),
+        //     'results' =>  [
+        //         'data' => $posts
+        //     ],
+        // ]);
     }
 
     /**
@@ -93,7 +93,15 @@ class ApiPostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Post::find($id);
+
+        return response()->json([
+            'response' => true,
+            'count' => $post ? 1 : 0,
+            'results' => [
+                'data' => $post
+            ],
+        ]);
     }
 
     /**
