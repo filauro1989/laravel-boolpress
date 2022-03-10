@@ -1,6 +1,9 @@
 <template>
-    <div>
-        <div class="row row-cols-1 row-cols-md-4 g-4" v-if="post">
+    <div class="container-fluid">
+        <div
+            class="row row-cols-1 mt-3 row-cols-md-4 g-4 justify-content-center"
+            v-if="post"
+        >
             <div class="card">
                 <img
                     :src="'/storage/' + post.image"
@@ -13,6 +16,22 @@
                     <p class="card-text">{{ post.content }}</p>
                 </div>
             </div>
+        </div>
+        <div class="btn-container d-flex justify-content-center mt-3">
+            <router-link
+                class="btn btn-primary me-1"
+                :to="{
+                    name: 'home',
+                }"
+                >Back to Home</router-link
+            >
+            <router-link
+                class="btn btn-primary ms-1"
+                :to="{
+                    name: 'posts',
+                }"
+                >Back to Posts</router-link
+            >
         </div>
     </div>
 </template>
